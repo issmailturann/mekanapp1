@@ -1,4 +1,4 @@
-package com.mekanapp.userservice.model;
+package com.mekanapp.userservice.account;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;

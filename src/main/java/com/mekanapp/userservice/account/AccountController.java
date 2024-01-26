@@ -1,8 +1,5 @@
-package com.mekanapp.userservice.controller;
+package com.mekanapp.userservice.account;
 
-import com.mekanapp.userservice.dto.AccountCreateDto;
-import com.mekanapp.userservice.service.AccountService;
-import com.mekanapp.userservice.api.AccountApi;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

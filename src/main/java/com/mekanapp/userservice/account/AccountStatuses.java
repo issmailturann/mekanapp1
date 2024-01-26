@@ -1,4 +1,4 @@
-package com.mekanapp.userservice.constant;
+package com.mekanapp.userservice.account;
 
 public enum AccountStatuses {
     ACTIVE, PASSIVE

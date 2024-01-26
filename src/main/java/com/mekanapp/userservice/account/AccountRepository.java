@@ -1,6 +1,6 @@
-package com.mekanapp.userservice.repository;
+package com.mekanapp.userservice.account;
 
-import com.mekanapp.userservice.model.Account;
+import com.mekanapp.userservice.account.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

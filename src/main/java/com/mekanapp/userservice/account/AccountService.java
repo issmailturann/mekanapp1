@@ -1,9 +1,9 @@
-package com.mekanapp.userservice.service;
+package com.mekanapp.userservice.account;
 
-import com.mekanapp.userservice.constant.AccountStatuses;
-import com.mekanapp.userservice.dto.AccountCreateDto;
-import com.mekanapp.userservice.model.Account;
-import com.mekanapp.userservice.repository.AccountRepository;
+import com.mekanapp.userservice.account.AccountStatuses;
+import com.mekanapp.userservice.account.AccountCreateDto;
+import com.mekanapp.userservice.account.Account;
+import com.mekanapp.userservice.account.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;

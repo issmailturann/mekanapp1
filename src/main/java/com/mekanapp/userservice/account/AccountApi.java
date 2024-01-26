@@ -1,6 +1,5 @@
-package com.mekanapp.userservice.api;
+package com.mekanapp.userservice.account;
 
-import com.mekanapp.userservice.dto.AccountCreateDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

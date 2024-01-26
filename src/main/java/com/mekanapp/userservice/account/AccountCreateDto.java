@@ -1,4 +1,4 @@
-package com.mekanapp.userservice.dto;
+package com.mekanapp.userservice.account;
 
 import jakarta.validation.constraints.NotNull;
 
