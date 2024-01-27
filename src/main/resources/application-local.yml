@@ -9,7 +9,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/mekanapp_users
     username: postgres
-    password: 1234
+    password: 159753
     pool:
       max-create-connection-time: 2s
       initial-size: 5

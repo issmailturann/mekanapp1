@@ -2,6 +2,8 @@ package com.mekanapp.userservice.account;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,8 +28,8 @@ public class AccountController implements AccountApi {
     }
 
     @Override
-    public ResponseEntity<List<AccountDto>> getAllAccounts() {
-        return ResponseEntity.ok(service.getAccounts());
+    public ResponseEntity<Page<AccountDto>> getAllAccounts(Pageable page, UUID id) {
+        return ResponseEntity.ok(service.getAccounts(page, id));
     }
 
     @Override

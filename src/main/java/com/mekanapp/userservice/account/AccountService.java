@@ -5,6 +5,8 @@ import com.mekanapp.userservice.exception.UserException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +26,8 @@ public class AccountService {
 
     /**
      * Sign up
-     */    public UUID createUser(AccountCreateDto accountCreateDto) {
+     */
+    public UUID createUser(AccountCreateDto accountCreateDto) {
         Account newAccount = new Account();
         BeanUtils.copyProperties(accountCreateDto, newAccount);
         newAccount.setStatus(AccountStatuses.ACTIVE.toString());
@@ -34,7 +37,8 @@ public class AccountService {
 
     /**
      * Sign in
-     */    public AccountDto getAccount(UUID id) {
+     */
+    public AccountDto getAccount(UUID id) {
         Optional<Account> responseAccount = repository.findById(id);
         Account existAccount;
 
@@ -48,10 +52,18 @@ public class AccountService {
         return accountMapper.toDto(existAccount);
     }
 
-    // WHO USE THE MEKANAPP - FRIENDLIST
-    public List<AccountDto> getAccounts() {
-        List<Account> responseAccounts = repository.findAll();
-        return accountMapper.toDtoList(responseAccounts);
+    // WHO USE THE MEKANAPP - FRIENDLIST (The logged in user cannot see him/herself in this list.)
+    public Page<AccountDto> getAccounts(Pageable page, UUID id) {
+        AccountDto existAccount = null;
+
+        if(id != null){
+            existAccount = getAccount(id);
+        }
+
+        if(existAccount != null) {
+            return repository.findByUsernameNot(existAccount.username(), page);
+        }
+        return repository.findAll(page).map(accountMapper::toDto);
     }
 
     /**
@@ -74,7 +86,8 @@ public class AccountService {
 
     /**
      * Delete account
-     */    public Boolean deleteAccount(UUID id) {
+     */
+    public Boolean deleteAccount(UUID id) {
         Optional<Account> existAccount = repository.findById(id);
 
         if(existAccount.isEmpty()) {
@@ -85,5 +98,5 @@ public class AccountService {
             return true;
         }
     }
-//sil
+
 }

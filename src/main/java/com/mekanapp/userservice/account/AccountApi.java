@@ -7,6 +7,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -59,7 +61,7 @@ public interface AccountApi {
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content(schema = @Schema(implementation = Error.class)))
     })
     @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<List<AccountDto>> getAllAccounts();
+    ResponseEntity<Page<AccountDto>> getAllAccounts(Pageable page, @RequestParam(required = false) UUID id);
 
     @Operation(operationId = "updateAccount", summary = "Update account by id.")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "SUCCESS", content = @Content(schema = @Schema(implementation = AccountDto.class))),

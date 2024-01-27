@@ -2,6 +2,7 @@ package com.mekanapp.userservice.shared;
 
 import org.mapstruct.InheritConfiguration;
 import org.mapstruct.InheritInverseConfiguration;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -17,5 +18,4 @@ public interface BaseMapper<S, T> {
 
     @InheritConfiguration
     List<S> toEntityList(List<T> targetList);
-
 }
