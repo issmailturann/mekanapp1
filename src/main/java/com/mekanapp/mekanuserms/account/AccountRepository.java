@@ -10,4 +10,6 @@ public interface AccountRepository extends JpaRepository<Account, UUID> {
 
     Page<AccountDto> findByUsernameNot(String username, Pageable page);
 
+    Account findByUsername(String username);
+
 }

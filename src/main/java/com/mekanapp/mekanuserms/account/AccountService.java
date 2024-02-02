@@ -22,9 +22,7 @@ public class AccountService {
     private final AccountRepository repository;
     private final AccountMapper accountMapper;
 
-    /**
-     * Sign up
-     */
+    // Sign Up
     public UUID createUser(AccountCreateDto accountCreateDto) {
         Account newAccount = new Account();
         BeanUtils.copyProperties(accountCreateDto, newAccount);
@@ -33,10 +31,7 @@ public class AccountService {
         return responseAccount.getId();
     }
 
-    /**
-     * Sign in
-     * bu bir testtir
-     */
+    // GET YOUR ACCOUNT INFO
     public AccountDto getAccount(UUID id) {
         Optional<Account> responseAccount = repository.findById(id);
         Account existAccount;
@@ -65,9 +60,7 @@ public class AccountService {
         return repository.findAll(page).map(accountMapper::toDto);
     }
 
-    /**
-     * updates account
-     */
+    // Updates Account
     public AccountDto updateAccount(UUID id, AccountUpdateDto accountUpdateDto) {
         Optional<Account> existAccount = repository.findById(id);
 
@@ -83,9 +76,7 @@ public class AccountService {
 
     }
 
-    /**
-     * Delete account
-     */
+    // Delete account
     public Boolean deleteAccount(UUID id) {
         Optional<Account> existAccount = repository.findById(id);
 
