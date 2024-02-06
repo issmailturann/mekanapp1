@@ -1,7 +1,7 @@
 package com.mekanapp.mekanuserms.userprofile;
 
+import com.mekanapp.mekanuserms.exception.AppException;
 import com.mekanapp.mekanuserms.exception.ErrorMessages;
-import com.mekanapp.mekanuserms.exception.UserException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -33,7 +33,7 @@ public class UserProfileService {
         UserProfile existUserProfile = repository.findByUserId(userId);
 
         if(existUserProfile == null) {
-            throw UserException.withStatusAndMessage(HttpStatus.NOT_FOUND, ErrorMessages.USER_NOT_FOUND);
+            throw AppException.withStatusAndMessage(HttpStatus.NOT_FOUND, ErrorMessages.USER_NOT_FOUND);
         }
 
         return userProfileMapper.toDto(existUserProfile);

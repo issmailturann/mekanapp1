@@ -1,7 +1,7 @@
 package com.mekanapp.mekanuserms.account;
 
+import com.mekanapp.mekanuserms.exception.AppException;
 import com.mekanapp.mekanuserms.exception.ErrorMessages;
-import com.mekanapp.mekanuserms.exception.UserException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -37,7 +37,7 @@ public class AccountService {
         Account existAccount;
 
         if(responseAccount.isEmpty()) {
-            throw UserException.withStatusAndMessage(HttpStatus.NOT_FOUND, ErrorMessages.USER_NOT_FOUND);
+            throw AppException.withStatusAndMessage(HttpStatus.NOT_FOUND, ErrorMessages.USER_NOT_FOUND);
         }
         else {
             existAccount = responseAccount.get();
@@ -65,7 +65,7 @@ public class AccountService {
         Optional<Account> existAccount = repository.findById(id);
 
         if(existAccount.isEmpty()) {
-            throw UserException.withStatusAndMessage(HttpStatus.NOT_FOUND, ErrorMessages.USER_NOT_FOUND);
+            throw AppException.withStatusAndMessage(HttpStatus.NOT_FOUND, ErrorMessages.USER_NOT_FOUND);
         }
 
         Account existingAccount = existAccount.get();
@@ -81,7 +81,7 @@ public class AccountService {
         Optional<Account> existAccount = repository.findById(id);
 
         if(existAccount.isEmpty()) {
-            throw UserException.withStatusAndMessage(HttpStatus.NOT_FOUND, ErrorMessages.USER_NOT_FOUND);
+            throw AppException.withStatusAndMessage(HttpStatus.NOT_FOUND, ErrorMessages.USER_NOT_FOUND);
         }
         else {
             repository.deleteById(id);

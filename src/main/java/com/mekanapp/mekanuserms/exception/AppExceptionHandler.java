@@ -18,7 +18,7 @@ import java.util.Objects;
 @Slf4j
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @RestControllerAdvice
-public class UserExceptionHandler extends ResponseEntityExceptionHandler {
+public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 
     private static final String TIMESTAMP = "timestamp";
 
@@ -55,15 +55,15 @@ public class UserExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
 
-    @ExceptionHandler(UserException.class)
-    public ResponseEntity<Object> handleUtilityException(WebRequest webRequest, UserException userException) {
-        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(userException.getStatus(), userException.getMessage());
+    @ExceptionHandler(AppException.class)
+    public ResponseEntity<Object> handleUtilityException(WebRequest webRequest, AppException appException) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(appException.getStatus(), appException.getMessage());
         problemDetail.setInstance(URI.create(webRequest.getDescription(false)));
-        problemDetail.setTitle(userException.getClass().getSimpleName());
-        problemDetail.setStatus(userException.getStatus().value());//2.defa neden atandi? sorusunu arastir
+        problemDetail.setTitle(appException.getClass().getSimpleName());
+        problemDetail.setStatus(appException.getStatus().value());
         problemDetail.setProperty(TIMESTAMP, LocalDateTime.now());
 
-        return new ResponseEntity<>(problemDetail, userException.getStatus());
+        return new ResponseEntity<>(problemDetail, appException.getStatus());
     }
 
 }

@@ -2,8 +2,8 @@ package com.mekanapp.mekanuserms.auth;
 
 import com.mekanapp.mekanuserms.account.Account;
 import com.mekanapp.mekanuserms.account.AccountRepository;
+import com.mekanapp.mekanuserms.exception.AppException;
 import com.mekanapp.mekanuserms.exception.ErrorMessages;
-import com.mekanapp.mekanuserms.exception.UserException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +20,7 @@ public class AuthService implements UserDetailsService {
         Account inDatabase = repository.findByUsername(username);
 
         if(inDatabase == null) {
-            throw UserException.withStatusAndMessage(HttpStatus.NOT_FOUND, ErrorMessages.USER_NOT_FOUND);
+            throw AppException.withStatusAndMessage(HttpStatus.NOT_FOUND, ErrorMessages.USER_NOT_FOUND);
         }
 
         return inDatabase;

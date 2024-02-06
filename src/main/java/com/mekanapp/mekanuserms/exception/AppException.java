@@ -12,7 +12,7 @@ import static com.mekanapp.mekanuserms.exception.ErrorMessages.DEFAULT_ERROR_MES
 
 @Getter
 @Setter
-public class UserException extends RuntimeException implements Serializable {
+public class AppException extends RuntimeException implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -24,37 +24,37 @@ public class UserException extends RuntimeException implements Serializable {
     @NotNull
     private final HttpStatus status;
 
-    protected UserException(HttpStatus status, Throwable throwable) {
+    protected AppException(HttpStatus status, Throwable throwable) {
         super(status.name(), throwable);
         this.message = throwable.getMessage();
         this.detail = !throwable.getMessage().isEmpty() ? throwable.getMessage() : DEFAULT_ERROR_MESSAGE;
         this.status = status;
     }
 
-    protected UserException(HttpStatus status, String message) {
+    protected AppException(HttpStatus status, String message) {
         super(status.name());
         this.status = status;
         this.message = message;
         this.detail = null;
     }
 
-    protected UserException(HttpStatus status, String message, String errorDetail) {
+    protected AppException(HttpStatus status, String message, String errorDetail) {
         super(status.name());
         this.status = status;
         this.message = message;
         this.detail = errorDetail;
     }
 
-    public static UserException withStatusAndThrowable(HttpStatus status, Throwable throwable){
-        return new UserException(status, throwable);
+    public static AppException withStatusAndThrowable(HttpStatus status, Throwable throwable){
+        return new AppException(status, throwable);
     }
 
-    public static UserException withStatusAndMessage(HttpStatus status, String message){
-        return new UserException(status, message);
+    public static AppException withStatusAndMessage(HttpStatus status, String message){
+        return new AppException(status, message);
     }
 
-    public static UserException withStatusAndDetails(HttpStatus status, String message, String errorDetail){
-        return new UserException(status, message, errorDetail);
+    public static AppException withStatusAndDetails(HttpStatus status, String message, String errorDetail){
+        return new AppException(status, message, errorDetail);
     }
 
 }
