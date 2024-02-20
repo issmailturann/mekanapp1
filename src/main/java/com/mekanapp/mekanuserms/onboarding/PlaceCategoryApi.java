@@ -50,7 +50,7 @@ public interface PlaceCategoryApi {
             @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content(schema = @Schema(implementation = Error.class)))
     })
     @PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<PlaceCategoryDto> updatePlaceCategory(@RequestBody PlaceCategoryUpdateDto placeCategoryUpdateDto);
+    ResponseEntity<PlaceCategoryDto> updatePlaceCategory(@RequestBody @Valid PlaceCategoryUpdateDto placeCategoryUpdateDto);
 
     @Operation(operationId = "getPlaceCategories", summary = "Get place categories")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "SUCCESS", content = @Content(schema = @Schema(implementation = PlaceCategoryDto.class))),

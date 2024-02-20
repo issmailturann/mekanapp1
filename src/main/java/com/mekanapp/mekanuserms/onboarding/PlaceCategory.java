@@ -10,17 +10,17 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "place_category", schema = "util_sch")
+@Table(name = "place_categories", schema = "util_sch")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PlaceCategory {
 
     @Id
-    @Column(name = "category_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @Column(name = "category_name")
     private String categoryName;
-    @Column(name = "category_status")
+    @Column(name = "status")
     private String status;
 }

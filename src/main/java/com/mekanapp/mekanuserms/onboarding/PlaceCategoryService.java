@@ -2,8 +2,6 @@ package com.mekanapp.mekanuserms.onboarding;
 
 import com.mekanapp.mekanuserms.exception.AppException;
 import com.mekanapp.mekanuserms.exception.ErrorMessages;
-import com.mekanapp.mekanuserms.place.PlaceCreateDto;
-import com.mekanapp.mekanuserms.place.PlaceUpdateDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -51,13 +49,13 @@ public class PlaceCategoryService {
 
     // Kullanıcıya dönecek kategoriler burada belirlenir.
     public Page<PlaceCategoryDto> getAllCategory(Pageable pageable) {
-        Page<PlaceCategory> response = repository.findAll(pageable);
+        Page<PlaceCategory> response = repository.findByStatus("ACTIVE", pageable);
 
         if(response.isEmpty()) {
             throw  AppException.withStatusAndMessage(HttpStatus.NOT_FOUND, ErrorMessages.PLACE_CATEGORY_NOT_FOUND);
         }
         else {
-            return repository.findAll(pageable).map(mapper::toDto);
+            return response.map(mapper::toDto);
         }
 
     }

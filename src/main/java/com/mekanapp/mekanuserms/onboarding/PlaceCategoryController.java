@@ -13,18 +13,21 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 public class PlaceCategoryController implements PlaceCategoryApi {
+
+    private final PlaceCategoryService service;
+
     @Override
     public ResponseEntity<UUID> createPlaceCategory(PlaceCategoryCreateDto placeCategoryCreateDto) {
-        return null;
+        return ResponseEntity.ok(service.createPlaceCategory(placeCategoryCreateDto));
     }
 
     @Override
     public ResponseEntity<PlaceCategoryDto> updatePlaceCategory(PlaceCategoryUpdateDto placeCategoryUpdateDto) {
-        return null;
+        return ResponseEntity.ok(service.updatePlaceCategory(placeCategoryUpdateDto));
     }
 
     @Override
-    public ResponseEntity<Page<PlaceCategoryDto>> getAllCategory(Pageable page) {
-        return null;
+    public ResponseEntity<Page<PlaceCategoryDto>> getAllCategory(Pageable pageable) {
+        return ResponseEntity.ok(service.getAllCategory(pageable));
     }
 }
